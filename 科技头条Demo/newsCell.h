@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  newsCell.h
 //  科技头条Demo
 //
 //  Created by locklight on 17/3/8.
@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "newsModel.h"
 
-@interface ViewController : UIViewController
+@interface newsCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) newsModel *model;
 
 @end
-
