@@ -13,9 +13,13 @@
 
 static NSString *newCell = @"newCell";
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>{
+    NSInteger type;
+}
 
 @property (nonatomic, strong) NSMutableArray *modelList;
+@property (nonatomic, strong) UIRefreshControl *refreshDown;
+@property (nonatomic, strong) UIActivityIndicatorView *indicatorUp;
 
 @end
 
@@ -33,13 +37,45 @@ static NSString *newCell = @"newCell";
     _tableView.estimatedRowHeight = 200;
     _tableView.rowHeight = UITableViewAutomaticDimension;
     
+    
+    //添加下拉刷新
+    _refreshDown = [[UIRefreshControl alloc]init];
+    [_refreshDown addTarget:self action:@selector(loadData) forControlEvents:UIControlEventValueChanged];
+    [_tableView addSubview:_refreshDown];
+    
+    //添加上拉刷新
+    _indicatorUp = [[UIActivityIndicatorView alloc]init];
+    _tableView.tableFooterView = _indicatorUp;
+    
     [self loadData];
 }
 
+//下拉刷新实现的方法
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == _modelList.count -1 ){
+        type = 1;
+        [_indicatorUp startAnimating];
+        [self loadData];
+    }
+}
 
 - (void)loadData{
+    //初始化
+    NSString *time = @"0";
+    //1.判断上下拉刷新
+    if(_refreshDown.refreshing == YES){
+        type = 0;
+        time = _modelList.count > 0 ? [_modelList.firstObject addtime]:@"0";
+    }
+    
+    if(type == 1){
+        time = _modelList.count > 0 ? [_modelList.lastObject addtime] :@"0";
+    }
+    
+    //2.根据type,time拼接URL
     //创建URL
-    NSURL *url = [NSURL URLWithString:@"http://news.coolban.com/Api/Index/news_list/app/2/cat/0/limit/20/time/0/type/0"];
+    NSString *urlString = [NSString stringWithFormat:@"http://news.coolban.com/Api/Index/news_list/app/2/cat/0/limit/20/time/%@/type/%zd",time,type];
+    NSURL *url = [NSURL URLWithString:urlString];
     //创建request
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     
@@ -54,14 +90,27 @@ static NSString *newCell = @"newCell";
         NSArray *newsDictArr = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
         //字典数组转模型数组
         NSArray *newsModelArr = [NSArray yy_modelArrayWithClass:[newsModel class] json:newsDictArr];
-        
-        NSLog(@"%@",newsModelArr);
-        
-        [_modelList addObjectsFromArray:newsModelArr];
+        //NSLog(@"%@",newsModelArr);
+//        NSMutableArray *responseMarr = [NSMutableArray arrayWithArray:newsModelArr];
+
+    //3.数据源拼接
+        //下拉刷新,直接赋值给数据源
+        if(type == 0){
+            _modelList = newsModelArr.mutableCopy;
+        }else{ //上拉刷新,添加到数据源数组后
+            [_modelList addObjectsFromArray:newsModelArr.mutableCopy];
+        }
         
         
         //刷新UI
         dispatch_async(dispatch_get_main_queue(), ^{
+            if(type == 0){
+                [_refreshDown endRefreshing];
+            }else{
+                [_indicatorUp stopAnimating];
+                type = 0;
+            }
+            
             [self.tableView reloadData];
         });
     }] resume];

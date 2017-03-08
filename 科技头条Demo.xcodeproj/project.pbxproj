@@ -26,6 +26,7 @@
 		CD7FD2371E6FFC6E009955EC /* UIImageView+HighlightedWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7FD2251E6FFC6E009955EC /* UIImageView+HighlightedWebCache.m */; };
 		CD7FD2381E6FFC6E009955EC /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7FD2271E6FFC6E009955EC /* UIImageView+WebCache.m */; };
 		CD7FD2391E6FFC6E009955EC /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7FD2291E6FFC6E009955EC /* UIView+WebCacheOperation.m */; };
+		CD7FD23C1E7015DB009955EC /* NSArray+log.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7FD23B1E7015DB009955EC /* NSArray+log.m */; };
 		CDEAF9881E6FC96A00E64603 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEAF9871E6FC96A00E64603 /* main.m */; };
 		CDEAF98B1E6FC96A00E64603 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEAF98A1E6FC96A00E64603 /* AppDelegate.m */; };
 		CDEAF98E1E6FC96A00E64603 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CDEAF98D1E6FC96A00E64603 /* ViewController.m */; };
@@ -77,6 +78,8 @@
 		CD7FD2271E6FFC6E009955EC /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
 		CD7FD2281E6FFC6E009955EC /* UIView+WebCacheOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+WebCacheOperation.h"; sourceTree = "<group>"; };
 		CD7FD2291E6FFC6E009955EC /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
+		CD7FD23A1E7015DB009955EC /* NSArray+log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+log.h"; sourceTree = "<group>"; };
+		CD7FD23B1E7015DB009955EC /* NSArray+log.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+log.m"; sourceTree = "<group>"; };
 		CDEAF9831E6FC96A00E64603 /* 科技头条Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "科技头条Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDEAF9871E6FC96A00E64603 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CDEAF9891E6FC96A00E64603 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 		CDEAF9861E6FC96A00E64603 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CD7FD23A1E7015DB009955EC /* NSArray+log.h */,
+				CD7FD23B1E7015DB009955EC /* NSArray+log.m */,
 				CDEAF99D1E6FCE4E00E64603 /* newsCell.h */,
 				CDEAF99E1E6FCE4E00E64603 /* newsCell.m */,
 				CDEAF99F1E6FCE4E00E64603 /* newsCell.xib */,
@@ -296,6 +301,7 @@
 				CDEAF9A01E6FCE4E00E64603 /* newsCell.m in Sources */,
 				CD7FD2041E6FF9AE009955EC /* YYClassInfo.m in Sources */,
 				CD7FD2311E6FFC6E009955EC /* SDWebImageManager.m in Sources */,
+				CD7FD23C1E7015DB009955EC /* NSArray+log.m in Sources */,
 				CDEAF9881E6FC96A00E64603 /* main.m in Sources */,
 				CD7FD22C1E6FFC6E009955EC /* SDImageCache.m in Sources */,
 			);
